@@ -17,6 +17,7 @@ struct ContentView: View {
     )
     
     @State private var viewModel = ViewModel()
+    @State private var mapType: MKMapType = .standard
     
     var body: some View {
         if viewModel.isUnlocked {
@@ -27,7 +28,7 @@ struct ContentView: View {
                             Image(systemName: "star.circle")
                                 .resizable()
                                 .foregroundStyle(.red)
-                                .frame(width: 44, height: 44)
+                                .frame(width: 18, height: 18)
                                 .background(.white)
                                 .clipShape(.circle)
                                 .onLongPressGesture {
@@ -54,8 +55,12 @@ struct ContentView: View {
                 .foregroundStyle(.white)
                 .clipShape(.capsule)
         }
+        Button("Toggle Map Type") {
+            mapType = (mapType == .standard) ? .hybrid : .standard
+        }
     }
 }
+
 
 #Preview {
     ContentView()
